@@ -1,6 +1,6 @@
 #include "SpParse.h"
 
-void parseArgs(arg_t args[], size_t numArgs, int argc, char* argv[]) {
+int parseArgs(arg_t args[], size_t numArgs, int argc, char* argv[]) {
 	for (int argvIndex = 1; argvIndex < argc; ++argvIndex) {
 		// Store Pos Arg
 		if (*(argv[argvIndex]) != '/') {
@@ -18,14 +18,20 @@ void parseArgs(arg_t args[], size_t numArgs, int argc, char* argv[]) {
 		for (int i = 0; i < numArgs; ++i) {
 			if (*(argv[argvIndex] + 1) != args[i].flag) continue;
 			args[i].isSet = true;
-			if (args[i].argTyp == at_flg) break;
+			if (args[i].argTyp == at_flg) goto ArgFound;
 
 			// Store Val Arg
 			++argvIndex;
 			args[i].value = argv[argvIndex];
-			break;
+			goto ArgFound;
 		}
+        // Arg is not valid
+        printf("Arg %s not valid.\n", argv[argvIndex]);
+        return 1;
+ArgFound:
+        continue;
 	}
+    return 0;
 }
 
 void printArgs(arg_t args[], size_t numArgs) {

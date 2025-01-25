@@ -17,7 +17,7 @@ typedef struct ArgObj {
 	char* value;
 } arg_t;
 
-void parseArgs(arg_t args[], size_t numArgs, int argc, char* argv[]);
+int parseArgs(arg_t args[], size_t numArgs, int argc, char* argv[]);
 void printArgs(arg_t args[], size_t numArgs);
 
 #endif // !SPPARSE_H
