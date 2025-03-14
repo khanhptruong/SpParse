@@ -36,11 +36,11 @@ ArgFound:
 
 void printArgs(arg_t args[], size_t numArgs) {
 	puts("Arg Table:");
-	puts("[Flag][Is-Set][Value]");
+	puts("[Flag]\t[Is-Set]\t   [Value]");
 	for (int i = 0; i < numArgs; ++i) {
 		char flg;
 		if (args[i].argTyp == at_pos) flg = '_';
 		else flg = args[i].flag;
-		printf(" %c     %d       %s\n", flg, args[i].isSet, args[i].value);
+		printf("%6c\t%8d\t%10s\n", flg, args[i].isSet, args[i].value);
 	}
 }
